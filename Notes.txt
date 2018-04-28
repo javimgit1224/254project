@@ -1,0 +1,110 @@
+This directory is for use in the open source project for CPSC_254.
+
+It is under version control using git 2.7.x, and is hosted at
+bitbucket.org/adsv/thermistor_divider.git
+
+The project is to create a program that can be used to select what kind of
+thermistor and voltage divider is appropriate for a given temperature range.
+Once the user has input relevant data we should plot a temperature vs.
+resistance graph to heuristically give an idea of how the circuit will perform.
+Ideally we'll be able to generate a lookup table for these values to be used
+for coding.
+
+==============================================================================
+Overview of program
+
+UI
+-Button near the top labeled "Help" to describe the other options below (in new
+ window?)
+-Field for entering resistance at 25C (commonly found on therm docs)
+-Field for entering B value of therm (also commonly found on docs)
+-Drop down menu for orientation of voltage divider. Choices should be
+      R1 = Rtherm or R2 = Rtherm
+ and should at least give the appropriate Vout function, ideally we'll have a
+ graphic showing a voltage divider with the thermistor in the chosen place
+ (might not need graphic, ascii image might be good enough)
+-Field for the value of the fixed resistor in the voltage divider
+-Button for graph (create a new window?)
+-Button for table (create a new window?)
+Depending on time we may also want fields to select temperature ranges
+
+ALGO
+Calculating the values of Rtherm and Vout are relatively straightforward given
+data from the above fields and the equations
+Rtherm = R0*e^(-B/(T0-T))
+Vout = Vin*(R2/(R1+R2))
+where Rtherm is substituted for R1 or R2
+
+Rtherm is a function of temperature(in Kelvins) and should be calculated in
+floating point.
+Vout is just a ratio since we don't know Vin (and don't need to know), therefore
+0<=Vout<=1.
+We need to keep both values (Rtherm for the table, Vout for the graph). The
+graph is probably best printed on a 1 degree granularity, the table on a 5
+degree granularity. Not certain on what the temperature limits should.
+The particulars on how to store the data is highly dependent on the graph
+and UI technique we use (gt, gtk, etc.).
+
+The table should be in a format suitable for insertion into a c sourcefile,
+along with a simple function that takes a resistance and returns a temperature.
+The function will use interpolation to calculate temperature values not
+explicitly on the table. NOTE:This function takes a resistance argument instead
+of a voltage argument because the details of the ADC (Vin, Vref, ADC size) are
+unkown, we could write the function to handle voltage arguments if we are also
+given the value of Vin, but we can't work directly from an ADC value
+
+example:
+#define THERM_TABLE_ROWS 20
+double thermTable[THERM_TABLE_ROWS][2]
+{
+  {5, 15000.2},
+  {10, 14512.8},
+  ...
+  {95, 45.68},
+  {100, 30.11}
+};
+
+double resToTemp(double res, int** table, int tableRows);
+//OR, if we want to use volts, we'd have to calculate volts to res in
+//this function
+double voltToTemp(double volt, double Vin, int** table, int tableRows);
+
+
+
+
+=============================================================================
+Math and description
+
+Some assumptions: simplest case is to use the B value function instead of
+Steinhart-Hart equation, since we are measuring temp and not creating a fuse
+we will use a negative temperature coefficient (NTC) thermistor.
+
+B-value : 1/T = 1/T0 + 1/B*ln(R/R0)
+where T is temperature, R is resistance, R0 is the resistance at test
+temperature T0, and B is a given. In this scenario B, and R0 have to be
+given (very common in data sheets), T0 is assumed to be 25C.
+
+Stenhart-Hart: 1/T = a + b*ln(R) + c*(ln(R))^3
+where T is temp, R is resistance, and a, b, and c are given. a and c are
+typically not in datasheets (b = 1/B) and instead have to be determined
+experimentally. In fact, a, b, and c are not constant, for extremly high
+levels of accuracy one needs to determine a, b, and c at different temperature
+ranges. The B-value equation simplifies Steinhart-Hart by assuming
+a = 1/T0 -(1/B)ln(R0) and c=0. Since extreme accuracy is not our goal and
+anyone who can experimentally determine a and c would be able to create
+their own temperature sensing circuit we are just going to use the B-value
+equation.
+
+For ease of understanding and plotting  we'll want to solve the B-value
+function for R, this gives:
+Rtherm = R0*e^(-B/(T0-T))
+
+A given voltage divider has the function
+Vout = Vin*(R2/(R1+R2))
+
+If the thermistor is R1, then voltage goes up as temperature goes up.
+Conversely, if it is R2, voltage goes down as temperature goes up.
+We don't actually need to know Vin, we can calculate Vout as a proportion of
+Vin.
+Substitute Rtherm above into R1 or R2 depending on user
+
