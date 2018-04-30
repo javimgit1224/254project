@@ -34,3 +34,10 @@ void MainWindow::on_radioButton_2_clicked()
     if(ui->radioButton_2->isChecked())
         ui->label_4->setPixmap(pix2);
 }
+//when user clicks on the help button it will open a new window
+void MainWindow::on_pushButton_3_clicked()
+{
+    h = new help(this);
+    h->show();
+
+}

@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "help.h"
 
 namespace Ui {
 class MainWindow;
@@ -21,8 +22,11 @@ private slots:
 
     void on_radioButton_2_clicked();
 
+    void on_pushButton_3_clicked();
+
 private:
     Ui::MainWindow *ui;
+    help *h; //declare pointer to help class
 };
 
 #endif // MAINWINDOW_H
