@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "help.h"
+#include "plot.h"
 
 namespace Ui {
 class MainWindow;
@@ -22,7 +23,7 @@ private slots:
 
     void on_radioButton_2_clicked();
 
-    void on_pushButton_1_clicked();
+    void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
 
@@ -31,6 +32,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     help *h; //declare pointer to help class
+    plot *p; //pointer to plot class
 };
 
 #endif // MAINWINDOW_H

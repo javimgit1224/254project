@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <string.h>
 #include <stdlib.h>
+#include <QDebug> //qDebug() << equivalent to cout <<
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -50,16 +51,26 @@ void MainWindow::on_radioButton_2_clicked()
 }
 
 //when user clicks on the graph button it will open a new window
-void MainWindow::on_pushButton_1_clicked()
+void MainWindow::on_pushButton_clicked()
 {
-    return;
-
+    p = new plot(this);
+    p->show();
 }
+
 //when user clicks on the table button it will open a new window
 void MainWindow::on_pushButton_2_clicked()
 {
-    return;
+    QString buffer;
+    buffer = ui->lineEdit->text();
+    qDebug() << buffer << endl;
 
+    buffer = ui->lineEdit_2->text();
+    qDebug() << buffer << endl;
+
+
+    buffer = ui->lineEdit_3->text();
+    qDebug() << buffer << endl;
+    return;
 }
 
 //when user clicks on the help button it will open a new window
