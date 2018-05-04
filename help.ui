@@ -27,7 +27,7 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>100</y>
+     <y>90</y>
      <width>113</width>
      <height>23</height>
     </rect>
@@ -50,7 +50,7 @@
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>100</y>
+     <y>90</y>
      <width>59</width>
      <height>15</height>
     </rect>
@@ -76,33 +76,33 @@
    <property name="geometry">
     <rect>
      <x>270</x>
-     <y>100</y>
-     <width>231</width>
+     <y>90</y>
+     <width>291</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>&lt;-- Field for entering B value of therm </string>
+    <string>&lt;-- Field for entering B value of the thermistor </string>
    </property>
   </widget>
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
      <x>270</x>
-     <y>170</y>
+     <y>190</y>
      <width>211</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>&lt;-- orientation of voltage divider.</string>
+    <string>&lt;-- Orientation of voltage divider.</string>
    </property>
   </widget>
   <widget class="QRadioButton" name="radioButton">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>150</y>
+     <y>190</y>
      <width>111</width>
      <height>21</height>
     </rect>
@@ -115,7 +115,7 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>180</y>
+     <y>210</y>
      <width>111</width>
      <height>21</height>
     </rect>
@@ -128,7 +128,7 @@
    <property name="geometry">
     <rect>
      <x>270</x>
-     <y>230</y>
+     <y>140</y>
      <width>391</width>
      <height>16</height>
     </rect>
@@ -141,7 +141,7 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>230</y>
+     <y>140</y>
      <width>113</width>
      <height>23</height>
     </rect>
@@ -151,7 +151,7 @@
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>230</y>
+     <y>140</y>
      <width>91</width>
      <height>16</height>
     </rect>

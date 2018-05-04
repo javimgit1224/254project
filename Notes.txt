@@ -1,7 +1,7 @@
 This directory is for use in the open source project for CPSC_254.
 
 It is under version control using git 2.7.x, and is hosted at
-bitbucket.org/adsv/thermistor_divider.git
+github.com
 
 The project is to create a program that can be used to select what kind of
 thermistor and voltage divider is appropriate for a given temperature range.
@@ -108,3 +108,12 @@ We don't actually need to know Vin, we can calculate Vout as a proportion of
 Vin.
 Substitute Rtherm above into R1 or R2 depending on user
 
+
+Programs and code used (under GPL)
+===============================================
+qt
+qt creator
+qCustomPlot
+fritzing
+make
+gcc

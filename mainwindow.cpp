@@ -24,8 +24,9 @@ void MainWindow::on_radioButton_clicked()
     char * currentDir = getenv("PWD");
     char  buffer[150] = {0};
     strcat(buffer, currentDir);
+    //this path assumes manual placement of the .jpg in the build folder
+    //it is not a good solution, but is easy to implement
     strcat(buffer, "/build-254-Desktop_Qt_5_7_0_GCC_64bit-Debug/RthermR1_schem.jpg");
-    printf("%s\n",buffer);
     //create a pic and chose the path of the pic
     QPixmap pix(buffer);
     //use an if statement to state if the button is clicked display the pic
@@ -40,11 +41,27 @@ void MainWindow::on_radioButton_2_clicked()
     char * currentDir = getenv("PWD");
     char  buffer[150] = {0};
     strcat(buffer, currentDir);
+    //this path assumes manual placement of the .jpg in the build folder
+    //it is not a good solution, but is easy to implement
     strcat(buffer, "/build-254-Desktop_Qt_5_7_0_GCC_64bit-Debug/RthermR2_schem.jpg");
     QPixmap pix2(buffer);
     if(ui->radioButton_2->isChecked())
         ui->label_4->setPixmap(pix2);
 }
+
+//when user clicks on the graph button it will open a new window
+void MainWindow::on_pushButton_1_clicked()
+{
+    return;
+
+}
+//when user clicks on the table button it will open a new window
+void MainWindow::on_pushButton_2_clicked()
+{
+    return;
+
+}
+
 //when user clicks on the help button it will open a new window
 void MainWindow::on_pushButton_3_clicked()
 {
