@@ -36,7 +36,7 @@ void table::printTable(QVector<double> res, int numElems, int tempMin, int stepP
     ui->plainTextEdit->appendPlainText(buff);
     //insert table delcaration
     ui->plainTextEdit->appendPlainText(
-    "double tempResTable[TABLE_ROWS][2] =\n"
+    "const double tempResTable[TABLE_ROWS][2] =\n"
     "{"
     );
 
@@ -62,7 +62,7 @@ void table::printTable(QVector<double> res, int numElems, int tempMin, int stepP
     "//This function, given a certain resistance and a table\n"
     "//formatted above to search through, searches the\n"
     "//table and returns a temperature.\n"
-    "double tableSearch(double res, double tab[][2],const int rows)\n"
+    "double tableSearch(double res, const double tab[][2],const int rows)\n"
     "{\n"
     "   double slope;\n"
     "   double xOffset;\n"
