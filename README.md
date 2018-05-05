@@ -16,3 +16,18 @@ for coding.
 7. qmake
 8. make
 9. ./254
+
+# Javier Melendrez and Alex Vidal
+- Javier Melendrez contributions:
+  Graphical User Interface
+  QCustomPlot
+  Main/ Initial Structure
+- Alex Vidal contributions:
+  Graphing Output
+  Table Output
+  Math/Algorithm
+# Used Open Source Libraries
+  - Qt (GPL License)
+  - QtCreator (LPGL License)
+  - QCustomPlot (GPL License)
+  - Fritzing (GPL License)
