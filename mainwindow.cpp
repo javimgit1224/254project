@@ -65,9 +65,9 @@ void MainWindow::on_pushButton_clicked()
     double r25 = 0;
     double bVal = 0;
     double rFixed = 0;
-    //102 data points calculated from -102 to 200
-    //start at -102 to avoid graphing issues
-    int vecSize = 300;
+    //300 data points calculated from -100 to 200
+    //start at -100 to avoid graphing issues
+    int vecSize = 301;
     int min = -100;
     QVector<double> x(vecSize), y(vecSize);
     int i = 0;
@@ -113,16 +113,34 @@ void MainWindow::on_pushButton_clicked()
 //when user clicks on the table button it will open a new window
 void MainWindow::on_pushButton_2_clicked()
 {
-    QString buffer;
-    buffer = ui->lineEdit->text();
-    qDebug() << buffer << endl;
+    bool orient;
+    bool canPlot;
+    double r25 = 0;
+    double bVal = 0;
+    double rFixed = 0;
+    //300 data points calculated from -100 to 200
+    //start at -100 to avoid graphing issues
+    int vecSize = 301;
+    int min = -100;
+    int degreesPerRow = 5;
+    QVector<double> x(vecSize), y(vecSize);
+    int i = 0;
 
-    buffer = ui->lineEdit_2->text();
-    qDebug() << buffer << endl;
+    //Check data reqs
+    canPlot = dataCheck(&r25, &bVal, &rFixed, &orient);
+    //If we failed then exit
+    if(canPlot == false)
+        return;
 
+    //Values are ok, lets make a data set.
+    for(i = 0; i < vecSize; i++)
+        x[i] = min + i;
+    //Calculate resistances based on thermistor data
+    computeRes(x, y, vecSize, r25, bVal);
 
-    buffer = ui->lineEdit_3->text();
-    qDebug() << buffer << endl;
+    t = new table(this);
+    t->show();
+    t->printTable(y, vecSize, min, degreesPerRow);
     return;
 }
 

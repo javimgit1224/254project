@@ -16,13 +16,16 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     help.cpp \
     qcustomplot.cpp \
-    plot.cpp
+    plot.cpp \
+    table.cpp
 
 HEADERS  += mainwindow.h \
     help.h \
     qcustomplot.h \
-    plot.h
+    plot.h \
+    table.h
 
 FORMS    += mainwindow.ui \
     help.ui \
-    plot.ui
+    plot.ui \
+    table.ui

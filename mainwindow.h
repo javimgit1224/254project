@@ -5,6 +5,7 @@
 #include <QVector>
 #include "help.h"
 #include "plot.h"
+#include "table.h"
 
 namespace Ui {
 class MainWindow;
@@ -34,6 +35,7 @@ private:
     Ui::MainWindow *ui;
     help *h; //declare pointer to help class
     plot *p; //pointer to plot class
+    table *t; //pointer to table class
 
     bool dataCheck(double *r25, double *bVal, double *rFixed, bool *orient);
 
