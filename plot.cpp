@@ -15,7 +15,17 @@ plot::~plot()
 }
 
 
-void plot::plotCurve(double r25, double bVal, double rFixed, int orientation)
+void plot::plotCurve(QVector<double> &x, QVector<double> &y, int numElems)
 {
-    qDebug() << r25 << ", " << bVal << ", " << rFixed << ", " << orientation << endl;
+    double yMin = 0;
+    double yMax = y[0];
+    if(y[numElems-1]> yMax)
+        yMax = y[numElems-1];
+
+    ui->customPlot->addGraph();
+    ui->customPlot->graph(0)->setData(x, y);
+    ui->customPlot->xAxis->setRange(0, 101);
+    ui->customPlot->yAxis->setRange(yMin, yMax);
+    ui->customPlot->xAxis->setLabel("Temperature");
+    ui->customPlot->yAxis->setLabel("Vout");
 }

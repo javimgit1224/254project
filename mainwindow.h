@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QVector>
 #include "help.h"
 #include "plot.h"
 
@@ -35,6 +36,8 @@ private:
     plot *p; //pointer to plot class
 
     bool dataCheck(double *r25, double *bVal, double *rFixed, bool *orient);
+
+    void computeRes(QVector<double>& temp, QVector<double>& res, int numElems, double r25, double bVal);
 };
 
 #endif // MAINWINDOW_H

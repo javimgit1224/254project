@@ -31,7 +31,7 @@ Depending on time we may also want fields to select temperature ranges
 ALGO
 Calculating the values of Rtherm and Vout are relatively straightforward given
 data from the above fields and the equations
-Rtherm = R0*e^(-B/(T0-T))
+Rtherm = R0*e^(-B*(1/T0-1/T))
 Vout = Vin*(R2/(R1+R2))
 where Rtherm is substituted for R1 or R2
 

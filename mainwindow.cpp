@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include <string.h>
 #include <stdlib.h>
+#include <QtMath>
+
 #include <QDebug> //qDebug() << equivalent to cout <<
 
 
@@ -59,21 +61,30 @@ void MainWindow::on_radioButton_2_clicked()
 void MainWindow::on_pushButton_clicked()
 {
     bool orient;
-    bool canPlot = true;
+    bool canPlot;
     double r25 = 0;
     double bVal = 0;
     double rFixed = 0;
-
-
+    //102 data points calculated from -2 to 100
+    //start at -2 to avoid graphing issues
+    QVector<double> x(103), y(103);
+    //Check data reqs
     canPlot = dataCheck(&r25, &bVal, &rFixed, &orient);
-
-    //Check if we failed any data reqs
+    //If we failed then exit
     if(canPlot == false)
         return;
 
     //Values are ok, lets make a data set.
+    for(int i = 0; i < 102; i++)
+        x[i] = i-2;
+    computeRes(x, y, 102, r25, bVal);
+
+    //Create dialogue
     p = new plot(this);
     p->show();
+
+    //Plot
+    p->plotCurve(x, y, 102);
 }
 
 //when user clicks on the table button it will open a new window
@@ -136,4 +147,14 @@ bool MainWindow::dataCheck(double* r25, double* bVal, double* rFixed, bool* orie
     }
 
     return canPlot;
+}
+
+void MainWindow::computeRes(QVector<double>& temp, QVector<double>& res, int numElems, double r25, double bVal)
+{
+    double t0 = 25+273.15; //Temp that R0 is measured in kelvin
+
+    for(int i = 0; i < numElems; i++)
+    {
+        res[i]=r25*qExp(-bVal*(1/t0-1/(temp[i]+273.15)));
+    }
 }

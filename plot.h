@@ -2,6 +2,7 @@
 #define PLOT_H
 
 #include <QDialog>
+#include <QVector>
 
 namespace Ui {
 class plot;
@@ -15,7 +16,7 @@ public:
     explicit plot(QWidget *parent = 0);
     ~plot();
 
-    void plotCurve(double r25, double bVal, double rFixed, int orientation);
+    void plotCurve(QVector<double>& x, QVector<double>& y, int numElems);
 
 private:
     Ui::plot *ui;
