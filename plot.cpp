@@ -16,27 +16,27 @@ plot::~plot()
 }
 
 
-void plot::plotCurve(QVector<double> &x, QVector<double> &y, int numElems, double r25, double bVal, double rFixed, bool orientation)
+void plot::plotCurve(QVector<double> &x, QVector<double> &y, int numElems, int min, double r25, double bVal, double rFixed, bool orientation)
 {
     QString buff;
     double yMin = 0;
     double yMax = y[0];
     if(y[numElems-1]> yMax)
         yMax = y[numElems-1];
-
     ui->customPlot->addGraph();
-    ui->customPlot->graph(0)->setData(x, y);
-    ui->customPlot->xAxis->setRange(0, numElems);
+    ui->customPlot->xAxis->setRange(min, numElems+min);
     ui->customPlot->yAxis->setRange(yMin, yMax);
-    ui->customPlot->xAxis->setLabel("Temperature");
-    ui->customPlot->yAxis->setLabel("Vout");
+    ui->customPlot->xAxis->setLabel("Temperature(C)");
+    ui->customPlot->yAxis->setLabel("Vout(%Vin)");
+    ui->customPlot->graph(0)->setData(x, y);
+
 
     //side labels
     buff = "R25 = ";
-    buff.append(QString::number(r25, 'f', 2));
+    buff.append(QString::number(r25, 'f', 0));
     ui->label->setText(buff);
     buff = "Bval = ";
-    buff.append(QString::number(bVal, 'f', 2));
+    buff.append(QString::number(bVal, 'f', 0));
     ui->label_2->setText(buff);
     if(orientation == 0)
         buff = "Rtherm = R1";
@@ -47,6 +47,6 @@ void plot::plotCurve(QVector<double> &x, QVector<double> &y, int numElems, doubl
         buff = "R2 = ";
     else
         buff = "R1 = ";
-    buff.append(QString::number(rFixed, 'f', 2));
+    buff.append(QString::number(rFixed, 'f', 0));
     ui->label_4->setText(buff);
 }

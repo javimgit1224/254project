@@ -65,10 +65,11 @@ void MainWindow::on_pushButton_clicked()
     double r25 = 0;
     double bVal = 0;
     double rFixed = 0;
-    //102 data points calculated from -2 to 100
-    //start at -2 to avoid graphing issues
-    int vecSize = 202;
-    QVector<double> x(vecSize+1), y(vecSize+1);
+    //102 data points calculated from -102 to 200
+    //start at -102 to avoid graphing issues
+    int vecSize = 300;
+    int min = -100;
+    QVector<double> x(vecSize), y(vecSize);
     int i = 0;
 
 
@@ -80,7 +81,7 @@ void MainWindow::on_pushButton_clicked()
 
     //Values are ok, lets make a data set.
     for(i = 0; i < vecSize; i++)
-        x[i] = i-2;
+        x[i] = min + i;
     //Calculate resistances based on thermistor data
     computeRes(x, y, vecSize, r25, bVal);
     //Calculate Vout as a ratio of Vin by using
@@ -89,14 +90,14 @@ void MainWindow::on_pushButton_clicked()
     {
         for(i = 0; i < vecSize; i++)
         {
-            y[i] = rFixed/(rFixed + y[i]);
+            y[i] = rFixed/(rFixed + y[i])*100;
         }
     }
     else//Rtherm == R2
     {
         for(i = 0; i < vecSize; i++)
         {
-            y[i] = y[i]/(y[i] + rFixed);
+            y[i] = y[i]/(y[i] + rFixed)*100;
         }
     }
 
@@ -106,7 +107,7 @@ void MainWindow::on_pushButton_clicked()
     p->show();
 
     //Plot
-    p->plotCurve(x, y, vecSize, r25, bVal, rFixed, orient);
+    p->plotCurve(x, y, vecSize, min, r25, bVal, rFixed, orient);
 }
 
 //when user clicks on the table button it will open a new window

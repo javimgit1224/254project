@@ -16,7 +16,7 @@ public:
     explicit plot(QWidget *parent = 0);
     ~plot();
 
-    void plotCurve(QVector<double>& x, QVector<double>& y, int numElems, double r25, double bVal, double rFixed, bool orientation);
+    void plotCurve(QVector<double>& x, QVector<double>& y, int numElems, int min, double r25, double bVal, double rFixed, bool orientation);
 
 private:
     Ui::plot *ui;
