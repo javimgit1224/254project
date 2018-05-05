@@ -67,7 +67,11 @@ void MainWindow::on_pushButton_clicked()
     double rFixed = 0;
     //102 data points calculated from -2 to 100
     //start at -2 to avoid graphing issues
-    QVector<double> x(103), y(103);
+    int vecSize = 202;
+    QVector<double> x(vecSize+1), y(vecSize+1);
+    int i = 0;
+
+
     //Check data reqs
     canPlot = dataCheck(&r25, &bVal, &rFixed, &orient);
     //If we failed then exit
@@ -75,16 +79,34 @@ void MainWindow::on_pushButton_clicked()
         return;
 
     //Values are ok, lets make a data set.
-    for(int i = 0; i < 102; i++)
+    for(i = 0; i < vecSize; i++)
         x[i] = i-2;
-    computeRes(x, y, 102, r25, bVal);
+    //Calculate resistances based on thermistor data
+    computeRes(x, y, vecSize, r25, bVal);
+    //Calculate Vout as a ratio of Vin by using
+    //orientation of voltage divider and fixed resistor value
+    if(orient == false)//Rtherm == R1
+    {
+        for(i = 0; i < vecSize; i++)
+        {
+            y[i] = rFixed/(rFixed + y[i]);
+        }
+    }
+    else//Rtherm == R2
+    {
+        for(i = 0; i < vecSize; i++)
+        {
+            y[i] = y[i]/(y[i] + rFixed);
+        }
+    }
+
 
     //Create dialogue
     p = new plot(this);
     p->show();
 
     //Plot
-    p->plotCurve(x, y, 102);
+    p->plotCurve(x, y, vecSize, r25, bVal, rFixed, orient);
 }
 
 //when user clicks on the table button it will open a new window
