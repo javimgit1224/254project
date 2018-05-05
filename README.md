@@ -19,13 +19,13 @@ for coding.
 
 # Javier Melendrez and Alex Vidal
 - Javier Melendrez contributions:
-  Graphical User Interface
-  QCustomPlot
-  Main/ Initial Structure
+  Graphical User Interface-
+  QCustomPlot-
+  Main/ Initial Structure-
 - Alex Vidal contributions:
-  Graphing Output
-  Table Output
-  Math/Algorithm
+  Graphing Output-
+  Table Output-
+  Math/Algorithm-
 # Used Open Source Libraries
   - Qt (GPL License)
   - QtCreator (LPGL License)
