@@ -15,6 +15,7 @@ public:
     explicit help(QWidget *parent = 0);
     ~help();
 
+
 private:
     Ui::help *ui;
 };

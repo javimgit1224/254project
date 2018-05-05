@@ -33,6 +33,8 @@ private:
     Ui::MainWindow *ui;
     help *h; //declare pointer to help class
     plot *p; //pointer to plot class
+
+    bool dataCheck(double *r25, double *bVal, double *rFixed, bool *orient);
 };
 
 #endif // MAINWINDOW_H

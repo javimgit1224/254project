@@ -15,6 +15,8 @@ public:
     explicit plot(QWidget *parent = 0);
     ~plot();
 
+    void plotCurve(double r25, double bVal, double rFixed, int orientation);
+
 private:
     Ui::plot *ui;
 };
